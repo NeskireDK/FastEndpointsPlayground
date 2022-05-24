@@ -1,10 +1,10 @@
-﻿namespace Web.Features.SaveWithInheritanceValidator;
+﻿namespace Web.Features.SwaggerSchema.SaveWithInheritanceValidator;
 
 public class SaveWithInheritanceValidator : Endpoint<Request>
 {
     public override void Configure()
     {
-        Put("Test/SaveWithInheritanceValidator");
+        Put("SwaggerSchema/SaveWithInheritanceValidator");
         AllowAnonymous();
         Summary(summary => summary.Description = $"This is testing '{nameof(SaveWithInheritanceValidator)}'");
     }

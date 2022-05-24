@@ -1,12 +1,12 @@
-﻿namespace Web.Features.SaveWithoutInheritance;
+﻿namespace Web.Features.SwaggerSchema.SaveWithFlatInheritance;
 
-public class SaveWithoutInheritance : Endpoint<Request>
+public class SaveWithInheritance  : Endpoint<Request>
 {
     public override void Configure()
     {
-        Put("Test/SaveWithoutInheritance");
+        Put("SwaggerSchema/SaveWithFlatInheritance");
         AllowAnonymous();
-        Summary(summary => summary.Description = $"This is testing '{nameof(SaveWithoutInheritance)}'");
+        Summary(summary => summary.Description = $"This is testing '{nameof(SaveWithInheritance)}'");
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
@@ -15,13 +15,16 @@ public class SaveWithoutInheritance : Endpoint<Request>
     }
 }
 
-public class Request
+public class Request : BaseIdentifier
 {
-    public Guid Identifier { get; set; } = Guid.NewGuid();
     public Guid? NullableIdentifier { get; set; }
     public string? Message { get; set; }
 }
 
+public class BaseIdentifier
+{
+    public Guid Identifier { get; set; } = Guid.NewGuid();
+}
 
 public class RequestValidator : Validator<Request>
 {
@@ -29,6 +32,6 @@ public class RequestValidator : Validator<Request>
     {
         RuleFor(x => x.Identifier).NotEmpty();
         RuleFor(x => x.NullableIdentifier).NotEmpty();
-        RuleFor(x => x.Message).Length(3, 100);
+        RuleFor(x => x.Message).NotEmpty().Length(3, 100);
     }
 }

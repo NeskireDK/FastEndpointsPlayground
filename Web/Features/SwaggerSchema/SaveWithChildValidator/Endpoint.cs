@@ -1,10 +1,10 @@
-﻿namespace Web.Features.SaveWithChildValidator;
+﻿namespace Web.Features.SwaggerSchema.SaveWithChildValidator;
 
 public class SaveWithChildValidator : Endpoint<Request>
 {
     public override void Configure()
     {
-        Put("Test/SaveWithChildValidator");
+        Put("SwaggerSchema/SaveWithChildValidator");
         AllowAnonymous();
         Summary(summary => summary.Description = $"This is testing '{nameof(SaveWithChildValidator)}'");
     }
